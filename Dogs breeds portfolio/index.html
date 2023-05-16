@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Dogs breeds portfolio</title>
+	<!-- Google fonts -->
+	<link href="https://fonts.googleapis.com/css2?family=Italiana&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<main>
+	<section class="hero_sec">
+		<ul class="item_name">
+			<li><a href="item1" class="item">Siberian Husky</a></li>
+			<li><a href="item2" class="item">Beagle</a></li>
+			<li><a href="item3" class="item">Labrador</a></li>
+			<li><a href="item4" class="item">Border Collie</a></li>
+			<li><a href="item5" class="item">Young Siberian Husky</a></li>
+			<li><a href="item6" class="item">Golden Retriever</a></li>
+			<li><a href="item7" class="item">Dalmata</a></li>
+		</ul>
+		<div class="item_image">
+			<div id="item1" class="img">
+				<img src="imagenes/1.jpg">
+				<div class="item_image_text">
+					<h3>Siberian &nbsp;Husky</h3>
+				</div>
+			</div>
+			<div id="item2" class="img">
+				<img src="imagenes/2.jpg" alt="">
+				<div class="item_image_text">
+					<h3>Beagle</h3>
+				</div>
+			</div>
+			<div id="item3" class="img">
+				<img src="imagenes/3.jpg">
+				<div class="item_image_text">
+					<h3>Fun &nbsp;Labrador</h3>
+				</div>
+			</div>
+			<div id="item4" class="img">
+				<img src="imagenes/4.jpg" alt="">
+				<div class="item_image_text">
+					<h3>Border &nbsp;Collie</h3>
+				</div>
+			</div>
+			<div id="item5" class="img">
+				<img src="imagenes/5.jpg">
+				<div class="item_image_text">
+					<h3>Young &nbsp;Siberian Husky</h3>
+				</div>
+			</div>
+			<div id="item6" class="img">
+				<img src="imagenes/6.jpg" alt="">
+				<div class="item_image_text">
+					<h3>Golden &nbsp;Retriever</h3>
+				</div>
+			</div>
+			<div id="item7" class="img">
+				<img src="imagenes/7.jpg">
+				<div class="item_image_text">
+					<h3>Dalmata</h3>
+				</div>
+			</div>
+		</div>
+	</section>
+</main>
+
+
+<!-- JQUERY -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
+<!-- LETTERING JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lettering.js/0.7.0/jquery.lettering.min.js"></script>
+
+<script>
+	
+	$(document).ready(function(){
+
+		$(".item_image_text h3").lettering();
+
+		$(".item_image_text h3 span").css("opacity", "0");
+		$(".item_image .img").hide().removeClass("imgActive");
+
+		// hover condition
+		$(".item_name li a").hover(function(){
+
+			// if
+
+			$(".item_name li a").removeClass("active");
+			$(this).addClass("active");
+
+			var activeLinkId = $(this).attr("href");
+			console.log(activeLinkId);
+
+			$(".item_image .img").hide().removeClass("imgActive");
+			$(".item_image .img#"+activeLinkId).show().addClass("imgActive");
+
+			$(".item_image_text h3 span").css("opacity", "1");
+
+
+			// gsap animation
+			var tl = gsap.timeline();
+
+			tl.from(".img.imgActive .item_image_text h3 span", {
+				y: 30,
+				x: 50,
+				opacity: 0,
+				stagger: .1
+			});
+
+
+		}, function(){
+
+			// else
+		});
+	});
+
+</script>
+</body>
+</html>
